@@ -22,3 +22,17 @@
 #web_bg{
     background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 }
+
+/* 滚动条 */
+::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+    border-radius: 3em;
+}
+::-webkit-scrollbar-track {
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    border-radius: 3em;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 15px;
+}
