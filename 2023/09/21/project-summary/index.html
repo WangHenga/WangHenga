@@ -1,0 +1,1140 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>苍穹外卖项目总结 | 老咸鱼的翻身日记</title><meta name="author" content="SaltedFish"><meta name="copyright" content="SaltedFish"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="苍穹外卖项目总结数据库设计该项目涉及的数据库如下：     序号 数据表名 中文名称     1 employee 员工表   2 category 分类表   3 dish 菜品表   4 dish_flavor 菜品口味表   5 setmeal 套餐表   6 setmeal_dish 套餐菜品关系表   7 user 用户表   8 address_book 地址表   9 shoppin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="苍穹外卖项目总结">
+<meta property="og:url" content="http://wanghenga.github.io/2023/09/21/project-summary/index.html">
+<meta property="og:site_name" content="老咸鱼的翻身日记">
+<meta property="og:description" content="苍穹外卖项目总结数据库设计该项目涉及的数据库如下：     序号 数据表名 中文名称     1 employee 员工表   2 category 分类表   3 dish 菜品表   4 dish_flavor 菜品口味表   5 setmeal 套餐表   6 setmeal_dish 套餐菜品关系表   7 user 用户表   8 address_book 地址表   9 shoppin">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.alphacoders.com/549/549711.jpg">
+<meta property="article:published_time" content="2023-09-21T09:50:42.000Z">
+<meta property="article:modified_time" content="2023-09-21T14:47:06.219Z">
+<meta property="article:author" content="SaltedFish">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.alphacoders.com/549/549711.jpg"><link rel="shortcut icon" href="https://game.gtimg.cn/images/xxsy/a20190115xczt/pic-b2.png"><link rel="canonical" href="http://wanghenga.github.io/2023/09/21/project-summary/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-21 22:47:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://n.sinaimg.cn/sinakd10101/429/w647h582/20200307/7170-iqmtvwv5115445.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://images.alphacoders.com/549/549711.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">老咸鱼的翻身日记</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">苍穹外卖项目总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-21T09:50:42.000Z" title="发表于 2023-09-21 17:50:42">2023-09-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-21T14:47:06.219Z" title="更新于 2023-09-21 22:47:06">2023-09-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">项目总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="苍穹外卖项目总结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="苍穹外卖项目总结"><a href="#苍穹外卖项目总结" class="headerlink" title="苍穹外卖项目总结"></a>苍穹外卖项目总结</h1><h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><p>该项目涉及的数据库如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>数据表名</th>
+<th>中文名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>employee</td>
+<td>员工表</td>
+</tr>
+<tr>
+<td>2</td>
+<td>category</td>
+<td>分类表</td>
+</tr>
+<tr>
+<td>3</td>
+<td>dish</td>
+<td>菜品表</td>
+</tr>
+<tr>
+<td>4</td>
+<td>dish_flavor</td>
+<td>菜品口味表</td>
+</tr>
+<tr>
+<td>5</td>
+<td>setmeal</td>
+<td>套餐表</td>
+</tr>
+<tr>
+<td>6</td>
+<td>setmeal_dish</td>
+<td>套餐菜品关系表</td>
+</tr>
+<tr>
+<td>7</td>
+<td>user</td>
+<td>用户表</td>
+</tr>
+<tr>
+<td>8</td>
+<td>address_book</td>
+<td>地址表</td>
+</tr>
+<tr>
+<td>9</td>
+<td>shopping_cart</td>
+<td>购物车表</td>
+</tr>
+<tr>
+<td>10</td>
+<td>orders</td>
+<td>订单表</td>
+</tr>
+<tr>
+<td>11</td>
+<td>order_detail</td>
+<td>订单明细表</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="1-employee"><a href="#1-employee" class="headerlink" title="1. employee"></a>1. employee</h3><p>employee表为员工表，用于存储商家内部的员工信息。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(32)</td>
+<td>姓名</td>
+<td></td>
+</tr>
+<tr>
+<td>username</td>
+<td>varchar(32)</td>
+<td>用户名</td>
+<td>唯一</td>
+</tr>
+<tr>
+<td>password</td>
+<td>varchar(64)</td>
+<td>密码</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>varchar(11)</td>
+<td>手机号</td>
+<td></td>
+</tr>
+<tr>
+<td>sex</td>
+<td>varchar(2)</td>
+<td>性别</td>
+<td></td>
+</tr>
+<tr>
+<td>id_number</td>
+<td>varchar(18)</td>
+<td>身份证号</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>账号状态</td>
+<td>1正常 0锁定</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>datetime</td>
+<td>创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>datetime</td>
+<td>最后修改时间</td>
+<td></td>
+</tr>
+<tr>
+<td>create_user</td>
+<td>bigint</td>
+<td>创建人id</td>
+<td></td>
+</tr>
+<tr>
+<td>update_user</td>
+<td>bigint</td>
+<td>最后修改人id</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2-category"><a href="#2-category" class="headerlink" title="2. category"></a>2. category</h3><p>category表为分类表，用于存储商品的分类信息。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(32)</td>
+<td>分类名称</td>
+<td>唯一</td>
+</tr>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>分类类型</td>
+<td>1菜品分类  2套餐分类</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>int</td>
+<td>排序字段</td>
+<td>用于分类数据的排序</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>状态</td>
+<td>1启用 0禁用</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>datetime</td>
+<td>创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>datetime</td>
+<td>最后修改时间</td>
+<td></td>
+</tr>
+<tr>
+<td>create_user</td>
+<td>bigint</td>
+<td>创建人id</td>
+<td></td>
+</tr>
+<tr>
+<td>update_user</td>
+<td>bigint</td>
+<td>最后修改人id</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="3-dish"><a href="#3-dish" class="headerlink" title="3. dish"></a>3. dish</h3><p>dish表为菜品表，用于存储菜品的信息。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(32)</td>
+<td>菜品名称</td>
+<td>唯一</td>
+</tr>
+<tr>
+<td>category_id</td>
+<td>bigint</td>
+<td>分类id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>price</td>
+<td>decimal(10,2)</td>
+<td>菜品价格</td>
+<td></td>
+</tr>
+<tr>
+<td>image</td>
+<td>varchar(255)</td>
+<td>图片路径</td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>varchar(255)</td>
+<td>菜品描述</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>售卖状态</td>
+<td>1起售 0停售</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>datetime</td>
+<td>创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>datetime</td>
+<td>最后修改时间</td>
+<td></td>
+</tr>
+<tr>
+<td>create_user</td>
+<td>bigint</td>
+<td>创建人id</td>
+<td></td>
+</tr>
+<tr>
+<td>update_user</td>
+<td>bigint</td>
+<td>最后修改人id</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="4-dish-flavor"><a href="#4-dish-flavor" class="headerlink" title="4. dish_flavor"></a>4. dish_flavor</h3><p>dish_flavor表为菜品口味表，用于存储菜品的口味信息。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>dish_id</td>
+<td>bigint</td>
+<td>菜品id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(32)</td>
+<td>口味名称</td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td>varchar(255)</td>
+<td>口味值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="5-setmeal"><a href="#5-setmeal" class="headerlink" title="5. setmeal"></a>5. setmeal</h3><p>setmeal表为套餐表，用于存储套餐的信息。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(32)</td>
+<td>套餐名称</td>
+<td>唯一</td>
+</tr>
+<tr>
+<td>category_id</td>
+<td>bigint</td>
+<td>分类id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>price</td>
+<td>decimal(10,2)</td>
+<td>套餐价格</td>
+<td></td>
+</tr>
+<tr>
+<td>image</td>
+<td>varchar(255)</td>
+<td>图片路径</td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>varchar(255)</td>
+<td>套餐描述</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>售卖状态</td>
+<td>1起售 0停售</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>datetime</td>
+<td>创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>datetime</td>
+<td>最后修改时间</td>
+<td></td>
+</tr>
+<tr>
+<td>create_user</td>
+<td>bigint</td>
+<td>创建人id</td>
+<td></td>
+</tr>
+<tr>
+<td>update_user</td>
+<td>bigint</td>
+<td>最后修改人id</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="6-setmeal-dish"><a href="#6-setmeal-dish" class="headerlink" title="6. setmeal_dish"></a>6. setmeal_dish</h3><p>setmeal_dish表为套餐菜品关系表，用于存储套餐和菜品的关联关系。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>setmeal_id</td>
+<td>bigint</td>
+<td>套餐id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>dish_id</td>
+<td>bigint</td>
+<td>菜品id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(32)</td>
+<td>菜品名称</td>
+<td>冗余字段</td>
+</tr>
+<tr>
+<td>price</td>
+<td>decimal(10,2)</td>
+<td>菜品单价</td>
+<td>冗余字段</td>
+</tr>
+<tr>
+<td>copies</td>
+<td>int</td>
+<td>菜品份数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="7-user"><a href="#7-user" class="headerlink" title="7. user"></a>7. user</h3><p>user表为用户表，用于存储C端用户的信息。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>openid</td>
+<td>varchar(45)</td>
+<td>微信用户的唯一标识</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(32)</td>
+<td>用户姓名</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>varchar(11)</td>
+<td>手机号</td>
+<td></td>
+</tr>
+<tr>
+<td>sex</td>
+<td>varchar(2)</td>
+<td>性别</td>
+<td></td>
+</tr>
+<tr>
+<td>id_number</td>
+<td>varchar(18)</td>
+<td>身份证号</td>
+<td></td>
+</tr>
+<tr>
+<td>avatar</td>
+<td>varchar(500)</td>
+<td>微信用户头像路径</td>
+<td></td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>datetime</td>
+<td>注册时间</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="8-address-book"><a href="#8-address-book" class="headerlink" title="8. address_book"></a>8. address_book</h3><p>address_book表为地址表，用于存储C端用户的收货地址信息。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>bigint</td>
+<td>用户id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>consignee</td>
+<td>varchar(50)</td>
+<td>收货人</td>
+<td></td>
+</tr>
+<tr>
+<td>sex</td>
+<td>varchar(2)</td>
+<td>性别</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>varchar(11)</td>
+<td>手机号</td>
+<td></td>
+</tr>
+<tr>
+<td>province_code</td>
+<td>varchar(12)</td>
+<td>省份编码</td>
+<td></td>
+</tr>
+<tr>
+<td>province_name</td>
+<td>varchar(32)</td>
+<td>省份名称</td>
+<td></td>
+</tr>
+<tr>
+<td>city_code</td>
+<td>varchar(12)</td>
+<td>城市编码</td>
+<td></td>
+</tr>
+<tr>
+<td>city_name</td>
+<td>varchar(32)</td>
+<td>城市名称</td>
+<td></td>
+</tr>
+<tr>
+<td>district_code</td>
+<td>varchar(12)</td>
+<td>区县编码</td>
+<td></td>
+</tr>
+<tr>
+<td>district_name</td>
+<td>varchar(32)</td>
+<td>区县名称</td>
+<td></td>
+</tr>
+<tr>
+<td>detail</td>
+<td>varchar(200)</td>
+<td>详细地址信息</td>
+<td>具体到门牌号</td>
+</tr>
+<tr>
+<td>label</td>
+<td>varchar(100)</td>
+<td>标签</td>
+<td>公司、家、学校</td>
+</tr>
+<tr>
+<td>is_default</td>
+<td>tinyint(1)</td>
+<td>是否默认地址</td>
+<td>1是 0否</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="9-shopping-cart"><a href="#9-shopping-cart" class="headerlink" title="9. shopping_cart"></a>9. shopping_cart</h3><p>shopping_cart表为购物车表，用于存储C端用户的购物车信息。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(32)</td>
+<td>商品名称</td>
+<td></td>
+</tr>
+<tr>
+<td>image</td>
+<td>varchar(255)</td>
+<td>商品图片路径</td>
+<td></td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>bigint</td>
+<td>用户id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>dish_id</td>
+<td>bigint</td>
+<td>菜品id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>setmeal_id</td>
+<td>bigint</td>
+<td>套餐id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>dish_flavor</td>
+<td>varchar(50)</td>
+<td>菜品口味</td>
+<td></td>
+</tr>
+<tr>
+<td>number</td>
+<td>int</td>
+<td>商品数量</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal(10,2)</td>
+<td>商品单价</td>
+<td></td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>datetime</td>
+<td>创建时间</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="10-orders"><a href="#10-orders" class="headerlink" title="10. orders"></a>10. orders</h3><p>orders表为订单表，用于存储C端用户的订单数据。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>number</td>
+<td>varchar(50)</td>
+<td>订单号</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>订单状态</td>
+<td>1待付款 2待接单 3已接单 4派送中 5已完成 6已取消</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>bigint</td>
+<td>用户id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>address_book_id</td>
+<td>bigint</td>
+<td>地址id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>order_time</td>
+<td>datetime</td>
+<td>下单时间</td>
+<td></td>
+</tr>
+<tr>
+<td>checkout_time</td>
+<td>datetime</td>
+<td>付款时间</td>
+<td></td>
+</tr>
+<tr>
+<td>pay_method</td>
+<td>int</td>
+<td>支付方式</td>
+<td>1微信支付 2支付宝支付</td>
+</tr>
+<tr>
+<td>pay_status</td>
+<td>tinyint</td>
+<td>支付状态</td>
+<td>0未支付 1已支付 2退款</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal(10,2)</td>
+<td>订单金额</td>
+<td></td>
+</tr>
+<tr>
+<td>remark</td>
+<td>varchar(100)</td>
+<td>备注信息</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>varchar(11)</td>
+<td>手机号</td>
+<td></td>
+</tr>
+<tr>
+<td>address</td>
+<td>varchar(255)</td>
+<td>详细地址信息</td>
+<td></td>
+</tr>
+<tr>
+<td>user_name</td>
+<td>varchar(32)</td>
+<td>用户姓名</td>
+<td></td>
+</tr>
+<tr>
+<td>consignee</td>
+<td>varchar(32)</td>
+<td>收货人</td>
+<td></td>
+</tr>
+<tr>
+<td>cancel_reason</td>
+<td>varchar(255)</td>
+<td>订单取消原因</td>
+<td></td>
+</tr>
+<tr>
+<td>rejection_reason</td>
+<td>varchar(255)</td>
+<td>拒单原因</td>
+<td></td>
+</tr>
+<tr>
+<td>cancel_time</td>
+<td>datetime</td>
+<td>订单取消时间</td>
+<td></td>
+</tr>
+<tr>
+<td>estimated_delivery_time</td>
+<td>datetime</td>
+<td>预计送达时间</td>
+<td></td>
+</tr>
+<tr>
+<td>delivery_status</td>
+<td>tinyint</td>
+<td>配送状态</td>
+<td>1立即送出  0选择具体时间</td>
+</tr>
+<tr>
+<td>delivery_time</td>
+<td>datetime</td>
+<td>送达时间</td>
+<td></td>
+</tr>
+<tr>
+<td>pack_amount</td>
+<td>int</td>
+<td>打包费</td>
+<td></td>
+</tr>
+<tr>
+<td>tableware_number</td>
+<td>int</td>
+<td>餐具数量</td>
+<td></td>
+</tr>
+<tr>
+<td>tableware_status</td>
+<td>tinyint</td>
+<td>餐具数量状态</td>
+<td>1按餐量提供  0选择具体数量</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="11-order-detail"><a href="#11-order-detail" class="headerlink" title="11. order_detail"></a>11. order_detail</h3><p>order_detail表为订单明细表，用于存储C端用户的订单明细数据。具体表结构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>主键</td>
+<td>自增</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(32)</td>
+<td>商品名称</td>
+<td></td>
+</tr>
+<tr>
+<td>image</td>
+<td>varchar(255)</td>
+<td>商品图片路径</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>bigint</td>
+<td>订单id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>dish_id</td>
+<td>bigint</td>
+<td>菜品id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>setmeal_id</td>
+<td>bigint</td>
+<td>套餐id</td>
+<td>逻辑外键</td>
+</tr>
+<tr>
+<td>dish_flavor</td>
+<td>varchar(50)</td>
+<td>菜品口味</td>
+<td></td>
+</tr>
+<tr>
+<td>number</td>
+<td>int</td>
+<td>商品数量</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal(10,2)</td>
+<td>商品单价</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="管理端"><a href="#管理端" class="headerlink" title="管理端"></a>管理端</h2><h3 id="员工模块"><a href="#员工模块" class="headerlink" title="员工模块"></a>员工模块</h3><p>包含登录/登出功能，以及员工管理功能</p>
+<h4 id="登录-登出"><a href="#登录-登出" class="headerlink" title="登录/登出"></a>登录/登出</h4><p>内部员工必须登录后才能访问管理端页面。员工登录成功后，生成JWT令牌(token)，将其传回前端，之后前端每次发送到后端的请求都需要在请求头中携带该token，后端使用拦截器(Interceptor)判断请求携带的token是否合法(即用户是否登录)。</p>
+<p>数据库的用户密码用MD5加密(安全性)。</p>
+<h4 id="员工管理"><a href="#员工管理" class="headerlink" title="员工管理"></a>员工管理</h4><p>管理员可以在后台系统中对员工信息进行管理，包括查询、新增、编辑、禁用等功能(CRUD)</p>
+<h3 id="商品管理模块"><a href="#商品管理模块" class="headerlink" title="商品管理模块"></a>商品管理模块</h3><p>商品管理中包括分类管理、菜品管理以及套餐管理。</p>
+<h4 id="分类管理"><a href="#分类管理" class="headerlink" title="分类管理"></a>分类管理</h4><p>主要对当前餐厅经营的 菜品分类 或 套餐分类 进行管理维护， 包含查询、新增、修改、删除等功能</p>
+<h4 id="菜品管理"><a href="#菜品管理" class="headerlink" title="菜品管理"></a>菜品管理</h4><p>主要维护当前餐厅中的菜品信息，包含查询、新增、修改、删除、启售、停售等功能</p>
+<h4 id="套餐管理"><a href="#套餐管理" class="headerlink" title="套餐管理"></a>套餐管理</h4><p>主要维护当前餐厅中的套餐信息，包含查询、新增、修改、删除、启售、停售等功能</p>
+<h4 id="通用方法"><a href="#通用方法" class="headerlink" title="通用方法"></a>通用方法</h4><h5 id="自动填入创建时间和更新时间"><a href="#自动填入创建时间和更新时间" class="headerlink" title="自动填入创建时间和更新时间"></a>自动填入创建时间和更新时间</h5><p>用AOP在对商品管理模块中的各个子模块操作时进行通用操作，比如在新增操作后自动将当前时间填入create_time和update_time字段，在更新操作后将当前时间填入update_time。为了区分insert和update操作，自定义一个注解，在数据层的对应方法上加入该注解。（AOP的@PointCut中使用@annotation：用于匹配当前执行方法持有指定注解的方法）。</p>
+<h5 id="云存储商品图片"><a href="#云存储商品图片" class="headerlink" title="云存储商品图片"></a>云存储商品图片</h5><p>将前端上传的商品图片保存到阿里云oss，并返回图片的存储在云端的url。之后对商品的增删改查中，使用这个url作为商品图片的资源。</p>
+<h3 id="订单管理模块"><a href="#订单管理模块" class="headerlink" title="订单管理模块"></a>订单管理模块</h3><p>主要维护用户在移动端下的订单信息，包含查询、取消、派送、完成，以及订单报表下载等功能。</p>
+<h3 id="数据统计模块"><a href="#数据统计模块" class="headerlink" title="数据统计模块"></a>数据统计模块</h3><p>主要完成对餐厅的各类数据统计，如营业额、用户数量、订单等。此模块主要是前端的工作，使用Apache Echart进行数据的可视化。</p>
+<h2 id="用户端"><a href="#用户端" class="headerlink" title="用户端"></a>用户端</h2><p>用户端的前端使用微信小程序。</p>
+<h3 id="用户模块"><a href="#用户模块" class="headerlink" title="用户模块"></a>用户模块</h3><h4 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h4><p>用户端的用户模块的功能主要是用微信进行第三方登录。流程如下图所示：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="/2023/09/21/project-summary/MyBlog\source\_posts\project-summary\api-login.2fcc9f35.jpg" alt></p>
+<p>后端将前端传过来的code和该小程序的appid，appsecret作为请求参数，调用微信提供的接口，以获取该用户在这个小程序中对应的唯一id(openid)，如果该用户是第一次登录(即openid在user表中不存在)，则新增用户。用户登录成功后，生成JWT令牌，将其返回给前端(和管理端的员工登录一致)。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/user-login/code2Session.html">小程序登录</a>后端接口</p>
+<h4 id="地址管理"><a href="#地址管理" class="headerlink" title="地址管理"></a>地址管理</h4><p>每个用户都有与之对应的地址簿，该部分主要维护用户的地址信息，包括对地址的增删改查，设置默认地址等。</p>
+<h3 id="菜单模块"><a href="#菜单模块" class="headerlink" title="菜单模块"></a>菜单模块</h3><p>在点餐界面需要展示出菜品分类/套餐分类, 并根据当前选择的分类加载其中的菜品信息, 供用户查询选择。</p>
+<p>点餐界面因为访问频率较高，每次展示菜单都查询数据库访问压力过大，造成数据库的查询性能下降。因此使用redis来缓存菜单数据。这里使用Spring Cache框架。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@EnableCaching</td>
+<td>开启缓存注解功能，通常加在启动类上</td>
+</tr>
+<tr>
+<td>@Cacheable</td>
+<td>在方法执行前先查询缓存中是否有数据，如果有数据，则直接返回缓存数据；如果没有缓存数据，调用方法并将方法返回值放到缓存中</td>
+</tr>
+<tr>
+<td>@CachePut</td>
+<td>将方法的返回值放到缓存中</td>
+</tr>
+<tr>
+<td>@CacheEvict</td>
+<td>将一条或多条数据从缓存中删除</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在查询方法添加@Cacheable注解，对菜单数据进行缓存。</p>
+<p>在管理端的商品管理模块中的修改或删除商品信息的方法上添加@CacheEvict注解，当菜单信息更改时，将redis中的缓存清除。</p>
+<h3 id="购物车模块"><a href="#购物车模块" class="headerlink" title="购物车模块"></a>购物车模块</h3><p>用户选中的菜品就会加入用户的购物车, 主要包含查询购物车、加入购物车、删除购物车、清空购物车等功能。</p>
+<h3 id="订单模块"><a href="#订单模块" class="headerlink" title="订单模块"></a>订单模块</h3><p>用户选完菜品/套餐后, 可以对购物车菜品进行结算支付, 这时就需要进行订单的支付。因为微信支付需要企业注册小程序，这里我在service层模拟了订单支付。</p>
+<h2 id="通用模块"><a href="#通用模块" class="headerlink" title="通用模块"></a>通用模块</h2><h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3><h2 id="项目改进"><a href="#项目改进" class="headerlink" title="项目改进"></a>项目改进</h2><h3 id="Redis维护员工登出"><a href="#Redis维护员工登出" class="headerlink" title="Redis维护员工登出"></a>Redis维护员工登出</h3><p>原先的登出操作是后端接受到请求后直接返回Result.success()，前端接收到登出成功的响应后，手动将保存的token删除，这样将登出操作交给前端是不安全的。登录时使用redis来保存已经登录的用户的id，登出时将该用户的id从redis中删除。在拦截器中先判断该用户id是否存在redis中，然后再判断token是否合法。这样避免了用户登出后，还能访问后端接口(如将token保存下来，在用户登出后直接用swagger等方式访问接口)。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">SaltedFish</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://wanghenga.github.io/2023/09/21/project-summary/">http://wanghenga.github.io/2023/09/21/project-summary/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://wanghenga.github.io" target="_blank">老咸鱼的翻身日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://images.alphacoders.com/549/549711.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/05/15/CEM-GDDPG/"><img class="next-cover" data-lazy-src="https://images.alphacoders.com/549/549711.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CEM-GDDPG</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://n.sinaimg.cn/sinakd10101/429/w647h582/20200307/7170-iqmtvwv5115445.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">SaltedFish</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wanghenga"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8B%8D%E7%A9%B9%E5%A4%96%E5%8D%96%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">苍穹外卖项目总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.</span> <span class="toc-text">数据库设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-employee"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. employee</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-category"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. category</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-dish"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. dish</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-dish-flavor"><span class="toc-number">1.1.4.</span> <span class="toc-text">4. dish_flavor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-setmeal"><span class="toc-number">1.1.5.</span> <span class="toc-text">5. setmeal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-setmeal-dish"><span class="toc-number">1.1.6.</span> <span class="toc-text">6. setmeal_dish</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-user"><span class="toc-number">1.1.7.</span> <span class="toc-text">7. user</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-address-book"><span class="toc-number">1.1.8.</span> <span class="toc-text">8. address_book</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-shopping-cart"><span class="toc-number">1.1.9.</span> <span class="toc-text">9. shopping_cart</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-orders"><span class="toc-number">1.1.10.</span> <span class="toc-text">10. orders</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-order-detail"><span class="toc-number">1.1.11.</span> <span class="toc-text">11. order_detail</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E7%AB%AF"><span class="toc-number">1.2.</span> <span class="toc-text">管理端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%98%E5%B7%A5%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.1.</span> <span class="toc-text">员工模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%BD%95-%E7%99%BB%E5%87%BA"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">登录&#x2F;登出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%98%E5%B7%A5%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">员工管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.2.</span> <span class="toc-text">商品管理模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">分类管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8F%9C%E5%93%81%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">菜品管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A5%97%E9%A4%90%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">套餐管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">通用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%A5%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4%E5%92%8C%E6%9B%B4%E6%96%B0%E6%97%B6%E9%97%B4"><span class="toc-number">1.2.2.4.1.</span> <span class="toc-text">自动填入创建时间和更新时间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%91%E5%AD%98%E5%82%A8%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87"><span class="toc-number">1.2.2.4.2.</span> <span class="toc-text">云存储商品图片</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.3.</span> <span class="toc-text">订单管理模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.4.</span> <span class="toc-text">数据统计模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%AB%AF"><span class="toc-number">1.3.</span> <span class="toc-text">用户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.1.</span> <span class="toc-text">用户模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">用户登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">地址管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8F%9C%E5%8D%95%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.2.</span> <span class="toc-text">菜单模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AD%E7%89%A9%E8%BD%A6%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.3.</span> <span class="toc-text">购物车模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.4.</span> <span class="toc-text">订单模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97"><span class="toc-number">1.4.</span> <span class="toc-text">通用模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.4.1.</span> <span class="toc-text">分页查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%94%B9%E8%BF%9B"><span class="toc-number">1.5.</span> <span class="toc-text">项目改进</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E7%BB%B4%E6%8A%A4%E5%91%98%E5%B7%A5%E7%99%BB%E5%87%BA"><span class="toc-number">1.5.1.</span> <span class="toc-text">Redis维护员工登出</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/09/21/project-summary/" title="苍穹外卖项目总结"><img data-lazy-src="https://images.alphacoders.com/549/549711.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="苍穹外卖项目总结"/></a><div class="content"><a class="title" href="/2023/09/21/project-summary/" title="苍穹外卖项目总结">苍穹外卖项目总结</a><time datetime="2023-09-21T09:50:42.000Z" title="发表于 2023-09-21 17:50:42">2023-09-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/15/CEM-GDDPG/" title="CEM-GDDPG"><img data-lazy-src="https://images.alphacoders.com/549/549711.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CEM-GDDPG"/></a><div class="content"><a class="title" href="/2023/05/15/CEM-GDDPG/" title="CEM-GDDPG">CEM-GDDPG</a><time datetime="2023-05-15T02:04:20.000Z" title="发表于 2023-05-15 10:04:20">2023-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/02/week5/" title="周报：3.30-4.7"><img data-lazy-src="https://images.alphacoders.com/549/549711.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="周报：3.30-4.7"/></a><div class="content"><a class="title" href="/2023/04/02/week5/" title="周报：3.30-4.7">周报：3.30-4.7</a><time datetime="2023-04-02T06:57:32.000Z" title="发表于 2023-04-02 14:57:32">2023-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/28/week4/" title="周报：3.23-3.29"><img data-lazy-src="https://images.alphacoders.com/549/549711.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="周报：3.23-3.29"/></a><div class="content"><a class="title" href="/2023/03/28/week4/" title="周报：3.23-3.29">周报：3.23-3.29</a><time datetime="2023-03-28T09:05:57.000Z" title="发表于 2023-03-28 17:05:57">2023-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/19/week3/" title="周报：3.18-3.22"><img data-lazy-src="https://images.alphacoders.com/549/549711.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="周报：3.18-3.22"/></a><div class="content"><a class="title" href="/2023/03/19/week3/" title="周报：3.18-3.22">周报：3.18-3.22</a><time datetime="2023-03-19T05:19:09.000Z" title="发表于 2023-03-19 13:19:09">2023-03-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By SaltedFish</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
